@@ -38,7 +38,7 @@ def build_parser(engines: List[str]) -> argparse.ArgumentParser:
         help="Request timeout in seconds (default: 3.0)"
     )
     p.add_argument(
-        "--follow", action="store_true",
+        "--follow", action="store_true", default=True,
         help="Follow one redirect (uses Location)"
     )
     p.add_argument(
