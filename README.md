@@ -45,7 +45,7 @@ usage: se_ua [-h] [-e {…} [{…} ...]] [--ua-json PATH] [--proxy URL]
 
 ### Arguments
 - `url`: The target URL to test (e.g., example.com or https://example.com).
-- '-e', '--engines': Specify which search engines to emulate. Default: all supported engines.
+- `-e`, `--engine`: Specify which search engines to emulate. Default: all supported engines.
 - `--ua-json PATH`: Path to a JSON file with custom User-Agent strings.
 - `--proxy URL`: Use a proxy for requests (e.g., http://user:pass@host:port).
 - `--timeout SECONDS`: Set request timeout in seconds (default: 3.0).
