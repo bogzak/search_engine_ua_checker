@@ -1,4 +1,3 @@
-from random import choices
 from typing import Optional
 from urllib.parse import urlparse
 
@@ -32,9 +31,9 @@ def load_user_agents(path: str) -> dict:
         eng = str(engine).lower().strip()
         if isinstance(mapping, dict):
             norm[eng] = [ua for ua in mapping.values()]
-        if isinstance(mapping, list):
+        elif isinstance(mapping, list):
             norm[eng] = [ua for ua in mapping]
-        if isinstance(mapping, str):
+        elif isinstance(mapping, str):
             norm[eng] = [mapping]
         else:
             norm[eng] = []
@@ -55,7 +54,7 @@ def build_parser(engines):
         choices=engines,
         nargs="+",
         default=engines,
-        help=f"Which engines to emulate (multiple selections possible): {choices}. All by default."
+        help="Which engines to emulate (multiple selections possible): %(choices)s. All by default."
     )
     parser.add_argument(
         "--proxy",
