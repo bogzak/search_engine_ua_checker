@@ -83,11 +83,15 @@ def build_parser(engines):
 def request_once(
         session: requests.Session,
         url: str,
+        ua_name: str,
         user_agent: str,
         timeout: float,
         proxies: Optional[dict],
 ):
     headers = make_headers(custom_ua=user_agent)
+
+    print(f"UA-Name: {ua_name}")
+    print(f"UA-String: {user_agent}")
 
     resp = session.get(
         url,
@@ -136,16 +140,16 @@ def main():
     session = requests.Session()
 
     for engine in args.engine:
-        uas = ua_map.get(engine, [])
-        if not uas:
+        pairs = ua_map.get(engine, [])
+        if not pairs:
             print(f"[{engine}] No User-Agent found for {args.url}")
             print("-" * 80)
             continue
 
-        for idx, ua in enumerate(uas, start=1):
-            print(f"[{engine}] [{idx}] {ua}")
+        for idx, (ua_name, ua_str) in enumerate(pairs, start=1):
+            print(f"[{engine}] [{idx}] {ua_name}")
             try:
-                request_once(session, args.url, ua, args.timeout, proxies=proxies)
+                request_once(session, args.url, ua_name, ua_str, args.timeout, proxies=proxies)
             except requests.exceptions.ConnectionError as e:
                 print(f"Connection error: {e}")
             except requests.RequestException as e:
