@@ -2,6 +2,8 @@ from typing import Optional
 from urllib.parse import urlparse
 from fake_headers import Headers
 
+from status_emoji import StatusEmoji
+
 import requests
 import json
 import argparse
@@ -9,6 +11,7 @@ import argparse
 
 JSON_FILE = "user_agents.json"
 REDIRECT_CODES = {301, 302, 303, 307, 308}
+STATUS_EMOJI = StatusEmoji()
 
 
 def make_headers(custom_ua: str) -> dict:
@@ -87,11 +90,11 @@ def request_once(
         user_agent: str,
         timeout: float,
         proxies: Optional[dict],
+        status_emoji: StatusEmoji = STATUS_EMOJI,
 ):
     headers = make_headers(custom_ua=user_agent)
 
-    print(f"UA-Name: {ua_name}")
-    print(f"UA-String: {user_agent}")
+    print(f"User-agent: {user_agent}")
 
     resp = session.get(
         url,
@@ -100,7 +103,10 @@ def request_once(
         timeout=timeout,
         proxies=proxies
     )
-    print(f"Status: {resp.status_code}")
+
+    emoji = status_emoji.get_emoji(resp.status_code)
+    print(f"Status: {resp.status_code} {emoji}")
+
     if resp.status_code in REDIRECT_CODES:
         loc = resp.headers.get("Location")
         print(f"Redirect: {loc}")
