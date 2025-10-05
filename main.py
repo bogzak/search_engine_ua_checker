@@ -6,19 +6,38 @@ import json
 import argparse
 
 
-JSON_FILE = "user_agent_search_test.json"
-SE = ["google", "yandex", "bing"]
-
-
-with open(JSON_FILE) as f:
-    se_json = json.load(f)
+JSON_FILE = "user_agents.json"
+REDIRECT_CODES = {301, 302, 303, 307, 308}
 
 
 def valid_url(url_value: str) -> str:
     parsed = urlparse(url_value)
     if parsed.scheme not in ["http", "https"] or not parsed.netloc:
-        raise argparse.ArgumentTypeError("invalid url")
+        raise argparse.ArgumentTypeError("Invalid url")
     return url_value
+
+
+def load_user_agents(path: str) -> dict:
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except FileNotFoundError as e:
+        raise SystemExit(f"File with User-Agent not found: {path}") from e
+    except json.JSONDecodeError as e:
+        raise SystemExit(f"Invalid JSON in {path}: {e}") from e
+
+    norm = {}
+    for engine, mapping in data.items():
+        eng = str(engine).lower().strip()
+        if isinstance(mapping, dict):
+            norm[eng] = [ua for ua in mapping.values()]
+        if isinstance(mapping, list):
+            norm[eng] = [ua for ua in mapping]
+        if isinstance(mapping, str):
+            norm[eng] = [mapping]
+        else:
+            norm[eng] = []
+    return norm
 
 
 def build_parser():

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c382b51-1658-43b1-a017-90b813eda3ad" name="Changes" comment="add user_agents.json to define user agent strings for various bots">
-      <change beforePath="$PROJECT_DIR$/user_agents.json" beforeDir="false" afterPath="$PROJECT_DIR$/user_agents.json" afterDir="false" />
+    <list default="true" id="7c382b51-1658-43b1-a017-90b813eda3ad" name="Changes" comment="normalize user agent keys to lowercase in user_agents.json">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759621092443</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add initial project files including main script and configuration">
+      <option name="closed" value="true" />
+      <created>1759624061975</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759624061975</updated>
+    </task>
+    <task id="LOCAL-00004" summary="normalize user agent keys to lowercase in user_agents.json">
+      <option name="closed" value="true" />
+      <created>1759624075947</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759624075947</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -82,6 +99,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add .gitignore to exclude Python artifacts and virtual environments" />
     <MESSAGE value="add user_agents.json to define user agent strings for various bots" />
-    <option name="LAST_COMMIT_MESSAGE" value="add user_agents.json to define user agent strings for various bots" />
+    <MESSAGE value="add initial project files including main script and configuration" />
+    <MESSAGE value="normalize user agent keys to lowercase in user_agents.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="normalize user agent keys to lowercase in user_agents.json" />
   </component>
 </project>
