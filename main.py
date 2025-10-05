@@ -18,11 +18,14 @@ def make_headers(custom_ua: str) -> dict:
 
 
 def valid_url(url_value: str) -> str:
-    parsed = urlparse(url_value)
-    if parsed.scheme not in ["http", "https"] or not parsed.netloc:
+    vu = url_value.strip()
+    parsed = urlparse(vu)
+    if not parsed.scheme:
+        vu = "https://" + vu
+        parsed = urlparse(vu)
+    if not parsed.scheme.lower() not in ("http", "https") or not parsed.netloc:
         raise argparse.ArgumentTypeError("Invalid url")
-    return url_value
-
+    return vu
 
 def load_user_agents(path: str) -> dict:
     try:
