@@ -23,7 +23,7 @@ def valid_url(url_value: str) -> str:
     if not parsed.scheme:
         vu = "https://" + vu
         parsed = urlparse(vu)
-    if not parsed.scheme.lower() not in ("http", "https") or not parsed.netloc:
+    if parsed.scheme.lower() not in ("http", "https") or not parsed.netloc:
         raise argparse.ArgumentTypeError("Invalid url")
     return vu
 
@@ -40,7 +40,7 @@ def load_user_agents(path: str) -> dict:
     for engine, mapping in data.items():
         eng = str(engine).lower().strip()
         if isinstance(mapping, dict):
-            norm[eng] = [ua for ua in mapping.values()]
+            norm[eng] = [(str(name), str(ua)) for name, ua in mapping.items()]
         elif isinstance(mapping, list):
             norm[eng] = [ua for ua in mapping]
         elif isinstance(mapping, str):
