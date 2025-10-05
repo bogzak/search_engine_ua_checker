@@ -119,8 +119,9 @@ def request_once(
                 timeout=timeout,
                 proxies=proxies,
             )
+            emoji = status_emoji.get_emoji(final.status_code)
             print(f"Final URL: {final.url}")
-            print(f"Final Status: {final.status_code}")
+            print(f"Final Status: {final.status_code} {emoji}")
         except requests.RequestException as e:
             print(f"Error during redirect: {e}")
 
