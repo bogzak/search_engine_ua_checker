@@ -1,5 +1,5 @@
 {
-    "Google": {
+    "google": {
       "Googlebot Smartphone": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
       "Googlebot Desktop": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/W.X.Y.Z Safari/537.36",
       "Googlebot Image": "Googlebot-Image/1.0",
@@ -20,7 +20,7 @@
       "AdSense Mobile": "(Various mobile device types) (compatible; Mediapartners-Google/2.1; +http://www.google.com/bot.html)",
       "Google-Safety": "Google-Safety"
     },
-    "Bing": {
+    "bing": {
       "Bingbot 1": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/W.X.Y.Z Safari/537.36",
       "Bingbot 2": "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)W.X.Y.Z Safari/537.36",
       "Bingbot 3": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36  (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",
@@ -32,7 +32,7 @@
       "MicrosoftPreview 1": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; MicrosoftPreview/2.0; +https://aka.ms/MicrosoftPreview) Chrome/W.X.Y.Z Safari/537.36",
       "MicrosoftPreview 2": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36  (compatible; MicrosoftPreview/2.0; +https://aka.ms/MicrosoftPreview)"
     },
-    "Yandex": {
+    "yandex": {
       "YandexAccessibilityBot": "Mozilla/5.0 (compatible; YandexAccessibilityBot/3.0; +http://yandex.com/bots)",
       "YandexAdNet": "Mozilla/5.0 (compatible; YandexAdNet/1.0; +http://yandex.com/bots)",
       "YandexBlogs": "Mozilla/5.0 (compatible; YandexBlogs/0.99; robot; +http://yandex.com/bots)",
