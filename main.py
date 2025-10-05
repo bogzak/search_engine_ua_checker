@@ -1,4 +1,5 @@
 from random import choices
+from typing import Optional
 from urllib.parse import urlparse
 
 import requests
@@ -40,7 +41,7 @@ def load_user_agents(path: str) -> dict:
     return norm
 
 
-def build_parser():
+def build_parser(engines):
     parser = argparse.ArgumentParser(
         description="Checks the URL response by substituting the User-Agent of selected search engines."
     )
@@ -51,9 +52,9 @@ def build_parser():
     )
     parser.add_argument(
         "-e", "--engine",
-        choices=SE,
+        choices=engines,
         nargs="+",
-        default=SE,
+        default=engines,
         help=f"Which engines to emulate (multiple selections possible): {choices}. All by default."
     )
     parser.add_argument(
@@ -70,30 +71,78 @@ def build_parser():
     return parser
 
 
-def main():
-    args = build_parser().parse_args()
-    for user_agent in SE:
-        headers = {"User-Agent": user_agent}
+def request_once(
+        session: requests.Session,
+        url: str,
+        user_agent: str,
+        timeout: float,
+        proxies: Optional[dict],
+):
+    headers = {"User-Agent": user_agent}
+
+    resp = session.get(
+        url,
+        headers=headers,
+        allow_redirects=False,
+        timeout=timeout,
+        proxies=proxies
+    )
+    print(f"Status: {resp.status_code}")
+    if resp.status_code in REDIRECT_CODES:
+        loc = resp.headers.get("Location")
+        print(f"Redirect: {loc}")
+
         try:
-            response = requests.get(args.url, headers=headers, allow_redirects=False, timeout=10)
-            print(f"User-Agent: {user_agent}")
-            print(f"Status Code: {response.status_code}")
-            if response.status_code in [301, 302]:
-                print(f"Start URL: {response.url}")
-                try:
-                    response_3xx = requests.get(args.url, headers=headers, allow_redirects=True, timeout=10)
-                    print(f"Final URL: {response_3xx.url}")
-                except requests.exceptions.RequestException as e:
-                    print(f"Error on redirect: {e}")
+            final = session.get(
+                url,
+                headers=headers,
+                allow_redirects=True,
+                timeout=timeout,
+                proxies=proxies,
+            )
+            print(f"Final URL: {final.url}")
+            print(f"Final Status: {final.status_code}")
+        except requests.RequestException as e:
+            print(f"Error during redirect: {e}")
+
+
+def main():
+    ua_map = load_user_agents(JSON_FILE)
+    engines = sorted(ua_map.keys())
+
+    parser = build_parser(engines)
+    args = parser.parse_args()
+
+    proxies = {
+        "http": args.proxy,
+        "https": args.proxy,
+    } if args.proxy else None
+
+    print(f"URL: {args.url}")
+    if args.proxy:
+        print(f"Proxy: {args.proxy}")
+    print(f"Engines: {', '.join(args.engine)}")
+    print("-" * 80)
+
+    session = requests.Session()
+
+    for engine in args.engine:
+        uas = ua_map.get(engine, [])
+        if not uas:
+            print(f"[{engine}] No User-Agent found for {args.url}")
             print("-" * 80)
-        except requests.exceptions.ConnectionError as e:
-            print(f"User-Agent: {user_agent}")
-            print(f"Connection error: {e}")
+            continue
+
+        for idx, ua in enumerate(uas, start=1):
+            print(f"[{engine}] [{idx}] {ua}")
+            try:
+                request_once(session, args.url, ua, args.timeout, proxies=proxies)
+            except requests.exceptions.ConnectionError as e:
+                print(f"Connection error: {e}")
+            except requests.RequestException as e:
+                print(f"Request error: {e}")
             print("-" * 80)
-        except requests.exceptions.RequestException as e:
-            print(f"User-Agent: {user_agent}")
-            print(f"Request error: {e}")
-            print("-" * 80)
+
 
 if __name__ == "__main__":
     main()
