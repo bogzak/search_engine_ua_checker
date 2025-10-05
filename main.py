@@ -1,12 +1,12 @@
+import requests
+import json
+import argparse
+
 from typing import Optional
 from urllib.parse import urlparse
 from fake_headers import Headers
 
 from status_emoji import StatusEmoji
-
-import requests
-import json
-import argparse
 
 
 JSON_FILE = "user_agents.json"
