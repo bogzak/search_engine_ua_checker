@@ -1,5 +1,6 @@
 from typing import Optional
 from urllib.parse import urlparse
+from fake_headers import Headers
 
 import requests
 import json
@@ -8,6 +9,12 @@ import argparse
 
 JSON_FILE = "user_agents.json"
 REDIRECT_CODES = {301, 302, 303, 307, 308}
+
+
+def make_headers(custom_ua: str) -> dict:
+    base = Headers(headers=True).generate()
+    base["User-Agent"] = custom_ua
+    return base
 
 
 def valid_url(url_value: str) -> str:
@@ -77,7 +84,7 @@ def request_once(
         timeout: float,
         proxies: Optional[dict],
 ):
-    headers = {"User-Agent": user_agent}
+    headers = make_headers(custom_ua=user_agent)
 
     resp = session.get(
         url,

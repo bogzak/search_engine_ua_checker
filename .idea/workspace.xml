@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c382b51-1658-43b1-a017-90b813eda3ad" name="Changes" comment="refactor main.py to improve user agent handling and streamline request logic">
+    <list default="true" id="7c382b51-1658-43b1-a017-90b813eda3ad" name="Changes" comment="refactor main.py to enhance user agent handling and improve argument parsing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_agents.json" beforeDir="false" afterPath="$PROJECT_DIR$/user_agents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759625878326</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="refactor main.py to enhance user agent handling and improve argument parsing">
+      <option name="closed" value="true" />
+      <created>1759626261312</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1759626261312</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +130,7 @@
     <MESSAGE value="normalize user agent keys to lowercase in user_agents.json" />
     <MESSAGE value="refactor main.py to load user agents from user_agents.json and normalize keys to lowercase" />
     <MESSAGE value="refactor main.py to improve user agent handling and streamline request logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor main.py to improve user agent handling and streamline request logic" />
+    <MESSAGE value="refactor main.py to enhance user agent handling and improve argument parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor main.py to enhance user agent handling and improve argument parsing" />
   </component>
 </project>
