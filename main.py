@@ -6,7 +6,7 @@ from typing import Optional
 from urllib.parse import urlparse
 from fake_headers import Headers
 
-from status_emoji import StatusEmoji
+from se_ua.status_emoji import StatusEmoji
 
 
 JSON_FILE = "user_agents.json"
