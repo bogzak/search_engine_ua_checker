@@ -7,6 +7,7 @@ from .status_emoji import StatusEmoji
 def print_human(results: Iterable[ProbeResult], status_emoji: StatusEmoji) -> None:
     for res in results:
         print(f"[{res.engine}] {res.ua_name}")
+        print(f"URL: {res.url}")
         print(f"UA: {res.ua_string}")
         if res.error:
             print(f"Error: {res.error}")
@@ -25,6 +26,7 @@ def to_json(results: Iterable[ProbeResult]) -> str:
     def _asdict(r: ProbeResult):
         return {
             "engine": r.engine,
+            "url": r.url,
             "ua_name": r.ua_name,
             "ua_string": r.ua_string,
             "initial_status": r.initial_status,

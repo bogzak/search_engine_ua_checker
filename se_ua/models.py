@@ -3,6 +3,7 @@ from typing import Optional
 
 @dataclass
 class ProbeResult:
+    url: str
     engine: str
     ua_name: str
     ua_string: str

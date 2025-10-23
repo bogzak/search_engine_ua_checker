@@ -45,6 +45,7 @@ class HttpClient:
                 final_status = r2.status_code
 
             return ProbeResult(
+                url=url,
                 engine=engine,
                 ua_name=ua_name,
                 ua_string=ua_string,
@@ -56,6 +57,7 @@ class HttpClient:
             )
         except requests.RequestException as e:
             return ProbeResult(
+                url=url,
                 engine=engine,
                 ua_name=ua_name,
                 ua_string=ua_string,
