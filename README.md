@@ -57,6 +57,7 @@ usage: se_ua [-h] [-e {…} [{…} ...]] [--ua-json PATH] [--proxy URL]
 ## Output (human)
 ```yaml
 [google] Googlebot Smartphone
+URL: https://example.com/
 UA: Mozilla/5.0 (...)
 Status: 302 🔀
 Redirect: https://m.example.com/
@@ -72,6 +73,7 @@ Final Status: 200 ✅
 [
   {
     "engine": "google",
+    "url": "https://example.com/",
     "ua_name": "Googlebot Smartphone",
     "ua_string": "Mozilla/5.0 (...)",
     "initial_status": 302,
